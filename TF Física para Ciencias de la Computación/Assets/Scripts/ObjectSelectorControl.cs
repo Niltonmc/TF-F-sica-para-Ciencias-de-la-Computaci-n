@@ -23,6 +23,10 @@ public class ObjectSelectorControl : MonoBehaviour {
 						print ("uwu");
 						appManager.ShowEditCanvas (hitRay.transform.gameObject.GetComponent<ParticleControl> ());
 					}
+					if (hitRay.transform.gameObject.GetComponent<MagneticFieldControl> () != null) {
+						print ("owo");
+						appManager.ShowEditCanvas (hitRay.transform.gameObject.GetComponent<MagneticFieldControl> ());
+					}
 				}
 			}
 		}
