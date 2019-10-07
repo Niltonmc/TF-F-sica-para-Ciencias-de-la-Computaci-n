@@ -6,6 +6,8 @@ public class ObjectSelectorControl : MonoBehaviour {
 
 	RaycastHit hitRay;
 	Ray ray;
+	public ApplicationManagerControl appManager;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +21,7 @@ public class ObjectSelectorControl : MonoBehaviour {
 				if(Input.GetMouseButtonDown(0) == true){
 					if (hitRay.transform.gameObject.GetComponent<ParticleControl> () != null) {
 						print ("uwu");
+						appManager.ShowEditCanvas (hitRay.transform.gameObject.GetComponent<ParticleControl> ());
 					}
 				}
 			}

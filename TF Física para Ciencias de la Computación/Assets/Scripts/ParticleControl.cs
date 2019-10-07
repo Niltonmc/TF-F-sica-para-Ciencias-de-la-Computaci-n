@@ -22,7 +22,6 @@ public class ParticleControl : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		particleRenderer = GetComponent<Renderer> ();
-		//ChangeParticleCharge ();
 	}
 	
 	// Update is called once per frame
