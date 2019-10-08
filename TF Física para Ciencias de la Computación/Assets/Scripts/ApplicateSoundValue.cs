@@ -19,7 +19,11 @@ public class ApplicateSoundValue : MonoBehaviour {
 	}
 	// Update is called once per frame
 	public void ApplicateChange () {
-		soundValue = 1 - PlayerPrefs.GetFloat (typeSoundPref);
+		soundValue = PlayerPrefs.GetFloat (typeSoundPref);
+		sourceMusic.volume = soundValue * maxSoundValue;
+	}
+	public void ApplicateChange (float volume) {
+		soundValue = volume;
 		sourceMusic.volume = soundValue * maxSoundValue;
 	}
 	public void PlayClip(){

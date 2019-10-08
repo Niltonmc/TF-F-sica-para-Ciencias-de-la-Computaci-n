@@ -7,6 +7,7 @@ public class ApplicationManagerControl : MonoBehaviour {
 
 	public bool isCreatingObject;
 	public int typeOfCreatingObject;
+	public bool isEditingObject;
 
 	[Header("Particle Variables")]
 	public GameObject particleGameobject;
@@ -28,6 +29,11 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public InputField magneticFieldXDistanceInputField;
 	public InputField magneticFieldYDistanceInputField;
 	public InputField magneticFieldChargeInputField;
+
+	[Header("Options Canvas Variables")]
+	public GameObject canvasOptions;
+	public ChangeSoundValue musicChangeSound;
+	public ChangeSoundValue sfxChangeSound;
 
 	// Use this for initialization
 	void Start () {
@@ -66,18 +72,20 @@ public class ApplicationManagerControl : MonoBehaviour {
 			particleChargeInputField.text = selectedParticle.particleCharge.ToString ();
 			particleWeightInputField.text = selectedParticle.particleMass.ToString ();
 			canvasParticleEdit.gameObject.SetActive (true);
+			isEditingObject = true;
 		}
 	}
 	public void CancelEditCanvas(){
 		selectedParticle = null;
 		canvasParticleEdit.gameObject.SetActive (false);
+		isEditingObject = true;
 	}
 	public void SaveParticleVariables(){
 		if (particleChargeInputField.text != "" && particleChargeInputField.text != "") {
 			selectedParticle.particleCharge = double.Parse (particleChargeInputField.text);
 			selectedParticle.particleMass = double.Parse (particleWeightInputField.text);
 			selectedParticle.ChangeParticleCharge ();
-			canvasParticleEdit.gameObject.SetActive (false);
+			CancelEditCanvas ();
 		}
 	}
 	public void InstantiateMagnetricField(){
@@ -95,11 +103,13 @@ public class ApplicationManagerControl : MonoBehaviour {
 			magneticFieldYDistanceInputField.text = selectedMagneticField.yDistance.ToString ();
 			magneticFieldChargeInputField.text = selectedMagneticField.magneticField.ToString ();
 			canvasMagneticFieldEdit.gameObject.SetActive (true);
+			isEditingObject = true;
 		}
 	}
 	public void CancelEditMagneticFieldCanvas(){
 		selectedMagneticField = null;
 		canvasMagneticFieldEdit.gameObject.SetActive (false);
+		isEditingObject = false;
 	}
 	public void SaveMagneticFieldVariables(){
 		if (magneticFieldXDistanceInputField.text != "" && magneticFieldYDistanceInputField.text != ""
@@ -108,7 +118,25 @@ public class ApplicationManagerControl : MonoBehaviour {
 			selectedMagneticField.yDistance = double.Parse (magneticFieldYDistanceInputField.text);
 			selectedMagneticField.magneticField = double.Parse (magneticFieldChargeInputField.text);
 			selectedMagneticField.ChangeMagneticFieldVariables ();
-			canvasMagneticFieldEdit.gameObject.SetActive (false);
+			CancelEditMagneticFieldCanvas ();
 		}
+	}
+	public void ShowOptionsCanvas(){
+		isEditingObject = true;
+		canvasOptions.gameObject.SetActive (true);
+		musicChangeSound.SetInitialValues ();
+		sfxChangeSound.SetInitialValues ();
+	}
+	public void CancelEditOptionsCanvas(){
+		isEditingObject = false;
+		canvasOptions.gameObject.SetActive (false);
+		musicChangeSound.RestorePreviousVolume ();
+		sfxChangeSound.RestorePreviousVolume ();
+	}
+	public void ApplyEditOptionsCanvas(){
+		isEditingObject = false;
+		canvasOptions.gameObject.SetActive (false);
+		musicChangeSound.SaveNewVolume ();
+		sfxChangeSound.SaveNewVolume ();
 	}
 }

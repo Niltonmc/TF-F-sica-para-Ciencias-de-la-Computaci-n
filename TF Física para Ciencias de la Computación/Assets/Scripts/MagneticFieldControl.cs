@@ -12,7 +12,6 @@ public class MagneticFieldControl : MonoBehaviour {
 	[Header("Creation Variables")]
 	public bool canFollowMouse;
 	private Vector3 mousePosition;
-	private Vector3 smoothVelocity = Vector3.zero;
 	public float mouseFollowSpeed;
 
 	[Header("Sthetic Variables")]
