@@ -34,6 +34,8 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public GameObject canvasOptions;
 	public ChangeSoundValue musicChangeSound;
 	public ChangeSoundValue sfxChangeSound;
+	public ChangeLanguageControl languageChange;
+	public Dropdown languageDropDown;
 
 	// Use this for initialization
 	void Start () {
@@ -78,13 +80,14 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public void CancelEditCanvas(){
 		selectedParticle = null;
 		canvasParticleEdit.gameObject.SetActive (false);
-		isEditingObject = true;
+		isEditingObject = false;
 	}
 	public void SaveParticleVariables(){
 		if (particleChargeInputField.text != "" && particleChargeInputField.text != "") {
 			selectedParticle.particleCharge = double.Parse (particleChargeInputField.text);
 			selectedParticle.particleMass = double.Parse (particleWeightInputField.text);
 			selectedParticle.ChangeParticleCharge ();
+			isEditingObject = false;
 			CancelEditCanvas ();
 		}
 	}
@@ -130,13 +133,20 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public void CancelEditOptionsCanvas(){
 		isEditingObject = false;
 		canvasOptions.gameObject.SetActive (false);
+		languageChange.RestoreLanguage ();
 		musicChangeSound.RestorePreviousVolume ();
 		sfxChangeSound.RestorePreviousVolume ();
+		languageDropDown.value = PlayerPrefs.GetInt ("CurrentLanguage");
 	}
 	public void ApplyEditOptionsCanvas(){
 		isEditingObject = false;
 		canvasOptions.gameObject.SetActive (false);
 		musicChangeSound.SaveNewVolume ();
 		sfxChangeSound.SaveNewVolume ();
+		PlayerPrefs.SetInt ("CurrentLanguage",languageDropDown.value);
+		languageChange.ChangeLanguage (languageDropDown.value);
+	}
+	public void ChangeLanguageWithOutSave(){
+		languageChange.ChangeLanguage (languageDropDown.value);
 	}
 }

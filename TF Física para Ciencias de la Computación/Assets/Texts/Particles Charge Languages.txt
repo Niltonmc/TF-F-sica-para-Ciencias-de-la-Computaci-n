@@ -1,0 +1,4 @@
+﻿Particle Charge:
+Carga de la Partícula:
+Carga de partículas:
+粒子負荷：

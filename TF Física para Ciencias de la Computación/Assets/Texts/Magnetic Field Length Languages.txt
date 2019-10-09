@@ -1,0 +1,4 @@
+﻿Field Length:
+Longitud del Campo:
+Comprimento do campo:
+フィールド長：

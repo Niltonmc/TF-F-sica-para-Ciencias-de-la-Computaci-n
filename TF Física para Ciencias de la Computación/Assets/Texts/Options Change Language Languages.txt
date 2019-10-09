@@ -1,0 +1,4 @@
+﻿Select language:
+Seleccionar Idioma:
+Selecionar idioma:
+言語を選択：
