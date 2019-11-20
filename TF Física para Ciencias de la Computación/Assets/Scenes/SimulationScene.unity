@@ -2492,7 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10b0f19895d9d442aa0c331207bcaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textLanguagesAsset: {fileID: 4900000, guid: a9c7be7f4774a7b46a0201e3643e005e, type: 3}
+  textLanguagesAsset: {fileID: 4900000, guid: 503a8b4ca746f794d850ac474b90d2a2, type: 3}
   posibleTextStrings: []
 --- !u!114 &445894598
 MonoBehaviour:
@@ -3193,7 +3193,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818074641}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!124 &818074643
 Behaviour:
   m_ObjectHideFlags: 0
