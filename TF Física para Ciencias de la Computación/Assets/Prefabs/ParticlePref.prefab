@@ -97,7 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleCharge: 0
   particleMass: 0
-  particleSpeed: 0
+  particleSpeedX: 0
+  particleAcceleration: 0
+  initialPosY: 0
   canFollowMouse: 0
   mouseFollowSpeed: 0.5
   particlePossibleMaterials:
@@ -105,6 +107,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 37fb51490b8011440802e3f07324c4f0, type: 2}
   - {fileID: 2100000, guid: 69774eba4ea6be64ab2cf02fe23da3c9, type: 2}
   materialSelected: 0
+  startMovement: 0
 --- !u!135 &135440571448244712
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -112,7 +115,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1472867784876834}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

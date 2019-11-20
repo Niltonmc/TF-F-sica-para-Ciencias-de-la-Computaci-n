@@ -18,6 +18,7 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public GameObject canvasParticleEdit;
 	public InputField particleWeightInputField;
 	public InputField particleChargeInputField;
+	public InputField particleSpeedInputField;
 
 	[Header("Magnetic Field Variables")]
 	public GameObject magneticFieldGameobject;
@@ -38,8 +39,8 @@ public class ApplicationManagerControl : MonoBehaviour {
 	public Dropdown languageDropDown;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		languageDropDown.value = PlayerPrefs.GetInt ("CurrentLanguage");
 	}
 	
 	// Update is called once per frame
@@ -73,6 +74,7 @@ public class ApplicationManagerControl : MonoBehaviour {
 			selectedParticle = tmp;
 			particleChargeInputField.text = selectedParticle.particleCharge.ToString ();
 			particleWeightInputField.text = selectedParticle.particleMass.ToString ();
+			particleSpeedInputField.text = selectedParticle.particleSpeedX.ToString ();
 			canvasParticleEdit.gameObject.SetActive (true);
 			isEditingObject = true;
 		}
@@ -86,6 +88,10 @@ public class ApplicationManagerControl : MonoBehaviour {
 		if (particleChargeInputField.text != "" && particleChargeInputField.text != "") {
 			selectedParticle.particleCharge = double.Parse (particleChargeInputField.text);
 			selectedParticle.particleMass = double.Parse (particleWeightInputField.text);
+			selectedParticle.particleSpeedX = double.Parse (particleSpeedInputField.text);
+			if (selectedParticle.particleSpeedX != 0) {
+				selectedParticle.startMovement = true;
+			}
 			selectedParticle.ChangeParticleCharge ();
 			isEditingObject = false;
 			CancelEditCanvas ();
